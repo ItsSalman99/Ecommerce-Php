@@ -2,7 +2,8 @@
 include_once("IPaymentMethod.php");
 include_once("DatabaseProxy.php");
 
-class CreditCardMethod implements IPaymentMethod {
+class CreditCardMethod implements IPaymentMethod
+{
   // private $card_number;
   // private $card_holder_name;
   // private $cvv;
@@ -22,26 +23,18 @@ class CreditCardMethod implements IPaymentMethod {
     $this->conn = $this->db->getConn();
   }
 
-  public function pay($totalPrice, $paymentCredentials) {
-    $balance = 0;
+  public function pay($totalPrice, $paymentCredentials)
+  {
 
-    $sql = "SELECT balance FROM credit WHERE card_number='".$paymentCredentials["cardNumber"]."'	card_holder_name='".$paymentCredentials["holderName"]."'	cvv='".$paymentCredentials["cvv"]."'";
-    $result = $this->conn->query($sql);
 
-    if ($result->num_rows > 0) {
-      // output data of each row
-      while($row = $result->fetch_assoc()) {
-        $balance = $row["balance"];
-      }
+    $sql = "Insert into credit (card_number, card_holder_name, cvv, balance) Values('" . $paymentCredentials["cardNumber"] .
+      "','" . $paymentCredentials["holderName"] . "','" . $paymentCredentials["cvv"] . "','"  . $totalPrice . "' )";
 
-      if($balance >= $totalPrice) {
-        $sql = "UPDATE credit SET balance=balance - ". $totalPrice ." WHERE card_number='".$paymentCredentials["cardNumber"]."'";
-
-        if ($this->conn->query($sql) === FALSE) {
-          return false;
-        }
-      }
+    if (mysqli_query($this->conn, $sql)) {
+      $_SESSION['success'] = $totalPrice . " successfully paid by " . $paymentCredentials["holderName"] . ' with Credit Card!';
+      return true;
     } else {
+      $_SESSION['error'] = 'Something went wrong, Payment Failed!!' . $sql . '</br>' . mysqli_error($this->conn);
       return false;
     }
   }

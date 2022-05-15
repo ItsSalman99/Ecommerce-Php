@@ -16,7 +16,6 @@ class PaypalMethod implements IPaymentMethod
 
   public function pay($totalPrice, $paymentCredentials)
   {
-    $balance = 0;
 
     $sql = "Insert into paypal (email, password, balance) Values('" . $paymentCredentials["email"] . "',
     '" . $paymentCredentials["password"] . "','" . $totalPrice . "' )";
