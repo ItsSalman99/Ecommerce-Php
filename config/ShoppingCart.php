@@ -127,22 +127,23 @@ class ShoppingCart
         }
     }
 
-    public function getTotalPrice() {
+    public function getTotalPrice()
+    {
         $totalPrice = 0;
-    
+
         $sql = "SELECT item.price, cart.item_id, cart.quantity FROM item INNER JOIN cart ON item.id=cart.item_id";
         $result = $this->conn->query($sql);
-    
+
         if ($result->num_rows > 0) {
-          // output data of each row
-          while($row = $result->fetch_assoc()) {
-            $totalPrice += $row["price"] * $row["quantity"]; 
-          }
+            // output data of each row
+            while ($row = $result->fetch_assoc()) {
+                $totalPrice += $row["price"] * $row["quantity"];
+            }
         } else {
-          // echo "0 results";
+            // echo "0 results";
         }
         return $totalPrice;
-      }
+    }
 
     public function checkQuantity()
     {
@@ -170,5 +171,19 @@ class ShoppingCart
         if ($this->conn->query($sql) === FALSE) {
             echo "Error deleting record: " . $this->conn->error;
         }
+    }
+
+    public function countCart()
+    {
+        $sql = "SELECT * from cart";
+
+        if ($result = mysqli_query($this->conn, $sql)) {
+
+            // Return the number of rows in result set
+            $rowcount = mysqli_num_rows($result);
+
+            return $rowcount;
+        }
+
     }
 }

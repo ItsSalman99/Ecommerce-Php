@@ -65,15 +65,15 @@ include('./public/partials/head.php');
                             <p class="mt-4 text-gray-800 font-medium">Payment information</p>
                             <div class="">
                                 <label class="block text-sm text-gray-600" for="cus_name">Card</label>
-                                <input class="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" id="cus_name" name="cardNumber" type="text"  placeholder="Card Number" aria-label="Name">
+                                <input class="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" name="cardNumber" type="text"  placeholder="Card Number" aria-label="Name">
                             </div>
                             <div class="">
                                 <label class="block text-sm text-gray-600" for="cus_name">Cvv</label>
-                                <input class="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" id="cus_name" name="cvv" type="text"  placeholder="CVV" aria-label="Name">
+                                <input class="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" name="cvv" type="text"  placeholder="CVV" aria-label="Name">
                             </div>
                             <div class="">
                                 <label class="block text-sm text-gray-600" for="cus_name">Name</label>
-                                <input class="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" id="cus_name" name="holderName" type="text"  placeholder="Card Number MM/YY CVC" aria-label="Name">
+                                <input class="w-full px-2 py-2 text-gray-700 bg-gray-200 rounded" name="holderName" type="text"  placeholder="Card Number MM/YY CVC" aria-label="Name">
                             </div>
                         </div>
                     </div>
