@@ -13,8 +13,6 @@ class CheckoutClass
     private $conn;
     private $Item;
     protected $shoppingCart;
-    private $orderController;
-    private $checkoutModel;
     private $paymentMethod;
 
     public function __construct()
@@ -49,7 +47,7 @@ class CheckoutClass
     //update items after payment
     public function updateQuantityAfterCheckout()
     {
-        $this->shoppingCart = new ShoppingCart();
+        $this->shoppingCart = ShoppingCart::getInstance();
         $this->Item = new Item();
 
         $result = $this->shoppingCart->getAllItems();

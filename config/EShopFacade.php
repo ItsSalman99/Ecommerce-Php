@@ -30,6 +30,7 @@ class EShopFacade
             $_SESSION['success'] = "Logged in successfully!";
             header("Location: ../index.php");
         } else {
+            $_SESSION['error'] = "Wrong credentials, user doesn't exit in our system!";
             header('Location: ../login.php');
         }
     }

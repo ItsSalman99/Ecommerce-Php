@@ -25,12 +25,28 @@ class OrderClass
         }
     }
 
+    public function getAllUserOrders()
+    {
+        try {
+            //code...
+            $sql = "SELECT * FROM orders where email='" . $_SESSION["email"] . "'";
+            $result = $this->conn->query($sql);
+
+            if ($result->num_rows > 0) {
+                return $result->fetch_assoc(); ;
+            }
+        } catch (\Throwable $th) {
+            echo $th;
+        }
+    }
+
 
     public function saveOrderInHistory()
     {
         $this->shoppingCart = ShoppingCart::getInstance();
 
         $totalPrice = $this->shoppingCart->getTotalPrice();
+        
         if ($totalPrice > 0) {
             $insertId = $this->insertOrder($totalPrice);
             if (isset($insertId)) {
@@ -54,7 +70,7 @@ class OrderClass
     //inser all items in ordered_item table 
     public function insertAllItemsInOrderedItem($insertOrderId)
     {
-        $this->shoppingCart = new ShoppingCart();
+        $this->shoppingCart = ShoppingCart::getInstance();
 
         $result = $this->shoppingCart->getAllItems();
         while ($row = $result->fetch_assoc()) {

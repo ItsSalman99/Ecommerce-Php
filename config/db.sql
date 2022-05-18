@@ -40,7 +40,7 @@ CREATE TABLE `item` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `order` (
+CREATE TABLE `orders` (
   `id` int(9) unsigned NOT NULL AUTO_INCREMENT,
   `email` varchar(255) DEFAULT NULL,
   `order_total` decimal(10,2) NOT NULL,

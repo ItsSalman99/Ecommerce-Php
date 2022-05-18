@@ -7,7 +7,7 @@ class ShoppingCart
     private $db;
     private $conn;
 
-    public function __construct()
+    private function __construct()
     {
         $this->db = new DatabaseProxy();
         $this->conn = $this->db->getConn();

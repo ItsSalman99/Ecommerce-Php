@@ -48,6 +48,6 @@ include('./public/partials/head.php');
 
     <script src="./public/assets/index.js"></script>
 
-</body>
-
-</html>
+<?php
+    include('./public/partials/footer.php');
+?>
